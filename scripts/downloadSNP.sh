@@ -1,9 +1,11 @@
-#!\bin\bash
+#!\bin\zsh
  
 # this script downloads all quality_variant files from the 1001 genome project. The files selected are those
 # listed at http://signal.salk.edu/atg1001/download.php. Files are downloaded from 
 # http://signal.salk.edu/atg1001/data/Salk/quality_variant_[FILENAME].txt and stored in the 
 # data/ directory named [FILENAME].txt, with the filename taken from the salk website.
+
+# this script should be run from the fp-group-2 folder, not the scripts folder
 
 # if our data directory isn't created, make it
 if [ ! -d 'data/' ]
@@ -21,6 +23,7 @@ fi
 dnld=`curl -s http://signal.salk.edu/atg1001/download.php`
 
 # to preview this script with fewer files, comment out this line
+# TODO: update this so it works with bash
 flnms=`echo -e $dnld | sed -nE 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg'`
 
 # and uncomment this line

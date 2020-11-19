@@ -28,7 +28,7 @@ curl -s http://signal.salk.edu/atg1001/download.php > filenames.txt
 sed -nE -i '.bak' 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt
 
 # and uncomment this line
-# flnms=`sed -inE 's/.*accession\.php\?id=[A-Za-z0-9]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt`
+# sed -nE -i '.bak' 's/.*accession\.php\?id=[A-Za-z0-9]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt
 
 
 # variables required for printing progress

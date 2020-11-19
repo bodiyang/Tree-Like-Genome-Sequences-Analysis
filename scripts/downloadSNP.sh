@@ -1,4 +1,4 @@
-#!\bin\zsh
+#!/bin/zsh
  
 # this script downloads all quality_variant files from the 1001 genome project. The files selected are those
 # listed at http://signal.salk.edu/atg1001/download.php. Files are downloaded from 
@@ -18,33 +18,43 @@ if [ -f 'data/log.txt' ]
 then 
     rm data/log.txt
 fi
-
-# download the list of files from the salk website, extract the filenames
-dnld=`curl -s http://signal.salk.edu/atg1001/download.php`
-
-# to preview this script with fewer files, comment out this line
-# TODO: update this so it works with bash
-flnms=`echo -e $dnld | sed -nE 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg'`
-
-# and uncomment this line
-# flnms=`echo -e $dnld | sed -nE 's/.*accession\.php\?id=[A-Za-z0-9]+>([A-Za-z0-9_]+)<.*/\1/pg'`
-
 cd data
 
+# download the list of files from the salk website, extract the filenames
+curl -s http://signal.salk.edu/atg1001/download.php > filenames.txt
+
+# to preview this script with fewer files, comment out this line
+# TODO: is there a way we can do this with bash that doesn't require a filenames file?
+sed -nE -i '.bak' 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt
+
+# and uncomment this line
+# flnms=`sed -inE 's/.*accession\.php\?id=[A-Za-z0-9]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt`
+
+
 # variables required for printing progress
-numfls=`echo $flnms | wc -l | sed -E 's/ //g'`
+numfls=`wc -l filenames.txt | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg'`
 count=1
 tothash=20
 
 # loop over the filenames
-echo $flnms | while read flnm
+# TODO: rewrite this with awk?
+cat filenames.txt | while read flnm
 do  
+
     # print our progress to stdout
-    numhash=$(( $count * $tothash / $numfls ))
-    space=`printf ' %.0s' {1..$(( $tothash - $numhash ))}`
-    hash=`printf '#%.0s' {0..$numhash}`
-    printf "downloading file "$count" of "$numfls"  |"$hash$space"|"'\r'
+    # check what shell we're using, nice progress printing only works with zsh
+    shl=`ps -p $$ | grep -E 'zsh'`
+    if [ ! -z $shl ]
+    then
+        numhash=$(( $count * $tothash / $numfls ))
+        space=`printf ' %.0s' {1..$(( $tothash - $numhash ))}`
+        hash=`printf '#%.0s' {0..$numhash}`
+        printf "downloading file "$count" of "$numfls"  |"$hash$space"|"'\r'
+    else
+        echo "downloading file "$count" of "$numfls
+    fi
     count=$(( $count + 1 ))
+
 
     # print the file name to the logfile so we know what file each line is referring to
     echo $flnm >> "log.txt"

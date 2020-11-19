@@ -11,6 +11,7 @@ then
     mkdir data
 fi
 
+# if we have a log file remove it, we'll need it fresh
 if [ -f 'data/log.txt' ]
 then 
     rm data/log.txt
@@ -19,7 +20,7 @@ fi
 # download the list of files from the salk website, extract the filenames
 dnld=`curl -s http://signal.salk.edu/atg1001/download.php`
 
-# to preview this script with fewer files, comment this line
+# to preview this script with fewer files, comment out this line
 flnms=`echo -e $dnld | sed -nE 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg'`
 
 # and uncomment this line
@@ -27,6 +28,7 @@ flnms=`echo -e $dnld | sed -nE 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9
 
 cd data
 
+# variables required for printing progress
 numfls=`echo $flnms | wc -l | sed -E 's/ //g'`
 count=1
 tothash=20

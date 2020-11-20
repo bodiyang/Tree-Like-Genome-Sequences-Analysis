@@ -4,6 +4,7 @@
 # listed at http://signal.salk.edu/atg1001/download.php. Files are downloaded from 
 # http://signal.salk.edu/atg1001/data/Salk/quality_variant_[FILENAME].txt and stored in the 
 # data/ directory named [FILENAME].txt, with the filename taken from the salk website.
+# file summary.txt will be created which record the total number of file and the size of the files downloaded 
 
 # this script should be run from the fp-group-2 folder, not the scripts folder
 
@@ -25,6 +26,7 @@ curl -s http://signal.salk.edu/atg1001/download.php > filenames.txt
 
 # to preview this script with fewer files, comment out this line
 # TODO: is there a way we can do this with bash that doesn't require a filenames file?
+# RES: A filename list would probably be necessary to be created to keep track, otherwise we need to use extremely complex pipelines to do the following steps of printing etc.
 sed -nE -i '.bak' 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt
 
 # and uncomment this line
@@ -38,6 +40,8 @@ tothash=20
 
 # loop over the filenames
 # TODO: rewrite this with awk?
+# RES: I would also suggest not using awk, easily to debug 
+
 cat filenames.txt | while read flnm
 do  
 
@@ -70,4 +74,29 @@ do
     fi 
 done
 
-# TODO: summary for downloads
+# summary for downloads
+echo "the range of size of the files downloaded is from $min to $max" >> summary.txt
+
+# the following code will go over the quality_variant_*.txt files to find the min and max size and print to summary.txt
+min=$(wc -c quality_variant_Aa_0.txt | cut -d " " -f 2)
+max=0
+
+for filename in quality_variant_*.txt
+do
+        size=$(wc -c $filename | cut -d " " -f 2)
+        echo $size >> summary.txt
+
+        if [ $min -gt $size ]
+        then
+                min=$size
+        fi
+
+        if [ $size -gt $max ]
+        then
+                max=$size
+        fi
+done
+
+echo "the range of size of the files downloaded is from $min to $max" >> summary.txt
+
+

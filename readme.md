@@ -20,7 +20,7 @@ TAIR10 Reference genome file sizes are as follows.
 
 ## Task 2
 The script downloadSNP.sh should work for downloading. We still need to (see TODOs in file)
-1. Do analysis of the log.out file to add to the report.
+1. Do analysis of the output files (size range and total number) to add to the report.
 2. Confirm all files are downloading correctly, especially with bash.
 3. There may be a way to use one curl command instead of a for loop, which would probably be more efficient
 

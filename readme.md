@@ -25,3 +25,8 @@ The script downloadSNP.sh should work for downloading. We still need to (see TOD
 3. There may be a way to use one curl command instead of a for loop, which would probably be more efficient
 
 I included a commented out line that only downloads a small subset (15 of the 216) of the files for testing. The comments indicate what lines need to be (un)commented to use this.
+
+Updated script of downloadSNP.sh:
+1. analysis has done on the log.txt download report
+2. a summary.txt file will be outputed, which is the summary of the number of files been downloaded; the range of the size of downloaded files
+3. I would suggest to keep the current code, instead of using awk to complete everything with one curl command, which might be easier to debug in the future if we need to go back to this script to make revisement. 

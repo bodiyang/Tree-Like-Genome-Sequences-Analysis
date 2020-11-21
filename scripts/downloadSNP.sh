@@ -82,11 +82,13 @@ done
 # the following code will go over the quality_variant_*.txt files to find the min and max size and print to summary.txt
 min=$(wc -c quality_variant_Aa_0.txt | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg')
 max=0
+count=0
 
 for filename in quality_variant_*.txt
 do
     size=$(wc -c $filename | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg')
-    echo $size >> summary.txt
+    #echo $size >> summary.txt
+    count=$(( $count + 1 ))
 
     if [[ $min -gt $size ]]
     then
@@ -98,5 +100,7 @@ do
             max=$size
     fi
 done
+
+echo $count" files downloaded" >> summary.txt
 
 echo "the range of size of the files downloaded is from $min to $max" >> summary.txt

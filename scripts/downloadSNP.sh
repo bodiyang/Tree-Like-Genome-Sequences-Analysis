@@ -12,13 +12,10 @@
 if [ ! -d 'data/' ]
 then
     mkdir data
+else # otherwise delete whatever's in it
+    rm data/*
 fi
 
-# if we have a log file remove it, we'll need it fresh
-if [ -f 'data/log.txt' ]
-then 
-    rm data/log.txt
-fi
 cd data
 
 # download the list of files from the salk website, extract the filenames
@@ -29,8 +26,10 @@ curl -s http://signal.salk.edu/atg1001/download.php > filenames.txt
 # RES: A filename list would probably be necessary to be created to keep track, otherwise we need to use extremely complex pipelines to do the following steps of printing etc.
 sed -nE -i '.bak' 's/.*accession\.php\?id=[A-Za-z0-9_]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt
 
-# and uncomment this line
+# and uncomment these lines
 # sed -nE -i '.bak' 's/.*accession\.php\?id=[A-Za-z0-9]+>([A-Za-z0-9_]+)<.*/\1/pg' filenames.txt
+# our test doesn't download Aa_0, which is necessary for the summary
+# curl "http://signal.salk.edu/atg1001/data/Salk/quality_variant_Aa_0.txt" -O 2>> "log.txt"
 
 
 # variables required for printing progress
@@ -59,44 +58,45 @@ do
     fi
     count=$(( $count + 1 ))
 
-
     # print the file name to the logfile so we know what file each line is referring to
     echo $flnm >> "log.txt"
     # download the actual files from the salk website
     # TODO: rewrite to use one curl request for all the files?
     curl "http://signal.salk.edu/atg1001/data/Salk/quality_variant_"$flnm".txt" -O 2>> "log.txt"
 
+    message="\n"$flnm" not downloaded. See log.txt for details."
+    filecontent=$(head -n 1 "quality_variant_"$flnm".txt" | grep -E "xml.*encoding.*>")
     # make sure this file was downloaded correctly
-    if [ ! -f "quality_variant_"$flnm".txt" ] || [ `wc -l "quality_variant_"$flnm".txt" | sed -E 's/ //g'` = 0 ] \
-        || [ `head -n 1 "quality_variant_"$flnm".txt" | grep -q -E "xml.*encoding.*>"` ]
+    if [ ! -f "quality_variant_"$flnm".txt" ] || [ `wc -l "quality_variant_"$flnm".txt" | sed -E 's/ //g'` = 0 ]
     then
-        echo "\n"$flnm" not downloaded. See log.txt for details."
+        echo -e $message
+    elif [[ ! -z $filecontent ]]
+    then
+        echo -e $message
+        rm "quality_variant_"$flnm".txt"
     fi 
 done
 
 # summary for downloads
-echo "the range of size of the files downloaded is from $min to $max" >> summary.txt
 
 # the following code will go over the quality_variant_*.txt files to find the min and max size and print to summary.txt
-min=$(wc -c quality_variant_Aa_0.txt | cut -d " " -f 2)
+min=$(wc -c quality_variant_Aa_0.txt | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg')
 max=0
 
 for filename in quality_variant_*.txt
 do
-        size=$(wc -c $filename | cut -d " " -f 2)
-        echo $size >> summary.txt
+    size=$(wc -c $filename | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg')
+    echo $size >> summary.txt
 
-        if [ $min -gt $size ]
-        then
-                min=$size
-        fi
+    if [[ $min -gt $size ]]
+    then
+            min=$size
+    fi
 
-        if [ $size -gt $max ]
-        then
-                max=$size
-        fi
+    if [[ $size -gt $max ]]
+    then
+            max=$size
+    fi
 done
 
 echo "the range of size of the files downloaded is from $min to $max" >> summary.txt
-
-

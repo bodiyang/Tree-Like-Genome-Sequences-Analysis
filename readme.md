@@ -34,4 +34,6 @@ The script works as follows:
 2. Each of these files is downloaded from http://signal.salk.edu/atg1001/data/Salk/quality_variant_[FILENAME].txt and stored in the `data/` directory
 3. The file size is calculated for each file and the minimum and maximum sizes are outputted to summary.txt, along with the number of files. 
 
+The script took about 53 minutes to run, and downloaded 215 SNP files
+
 ## Task 3

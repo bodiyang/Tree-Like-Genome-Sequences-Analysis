@@ -24,13 +24,13 @@ reference=$(tail -n +2 data/TAIR10_chr"$1".fas | tr -d '\n' | tail -c +$2 | head
 #We now build each strand's sequence based on the reference sequence and the list of its SNP's.
 for file in data/quality_variant*.txt
 do
-    indseq=$reference 
+    indseq=$reference #
+
+    #Create a temporary file snp.txt with list of SNP's in range of interest
+    #Each line of snp.txt is an SNP in range of interest 
     awk -v awk_chrom="$chrom" -v awk_startpos=$startpos -v awk_endpos=$endpos '$2 ~ awk_chrom && $3 <= awk_endpos &&  $3 >= awk_startpos { print $3 "\t" $4 "\t" $5}' $file > snp.txt
     
-
-    #snp.txt now contains list of differences in range of interest
-    #Each line is a SNP
-    #We iterate through the lines to make the necessary edits to indseq 
+    #We iterate through the lines of snp.txt to make the necessary edits to indseq 
     while read line; do
         position=$(echo $line | awk '{print $1}')
         refbase=$(echo $line | awk '{print $2}')
@@ -56,6 +56,7 @@ do
     echo "Allignment of strand $strand" generated
 done
 
+rm snp.txt #Delete temp file snp.txt
 
 #Any discrepancies?
 if [ $numdiscrep -eq 0 ] 

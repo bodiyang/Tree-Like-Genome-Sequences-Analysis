@@ -11,7 +11,7 @@ file_function() {
     do
         num_seq=$(ls -1U snp | wc -l)
         # Counts number of files in snp directory which are the number of sequences considered
-        length=$(expr $3 - $2)
+        length=$(expr $3 - $2 + 1)
         # Counts number of pairs as length of sequence
         echo "$num_seq $length" >> "$1_00$2_00$3".phy
         # Creates new file where 1 = chromosome of choice (e.g., chr1)
@@ -20,7 +20,9 @@ file_function() {
         ref_name=$(basename -s ".fas" "$ref")
         echo "From reference genome $ref_name"
         # to make sure base pairs are pulled from correct reference genome
-        head -c $3 $ref | tail -c $length >> "$1_00$2_00$3".phy
+        
+        tail +2 $ref | tr -d '\n' | head -c $3 | tail -c $length >> "$1_00$2_00$3".phy
+        # returns correct bases from reference genome, yet to be replaced with SNP bases
     done
 }
 # Example use: file_function chr1 102 132 creates chr1_00102_00132.phy

@@ -20,7 +20,7 @@ file_function() {
         ref_name=$(basename -s ".fas" "$ref")
         echo "From reference genome $ref_name"
         # to make sure base pairs are pulled from correct reference genome
-        
+        head -c $3 $ref | tail -c $length >> "$1_00$2_00$3".phy
     done
 }
 # Example use: file_function chr1 102 132 creates chr1_00102_00132.phy

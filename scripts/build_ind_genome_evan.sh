@@ -12,8 +12,8 @@ numdiscrep=0 #Number of discrepancies between reference genome and reference nuc
 
 numstrands=$(ls -1q data/quality_variant*.txt | wc -l) #Number of strands that we have
 ((seqlength = $3-$2+1)) #Length of sequence
-printf -v startnum "%05d" $2 #padding with zeros
-printf -v endnum "%05d" $3 #padding with zeros
+printf -v startnum "%06d" $2 #padding with zeros
+printf -v endnum "%06d" $3 #padding with zeros
 echo "${numstrands} ${seqlength}" > alignments/"$chrom"_"$startnum"_"$endnum".phy #Create output file with first line
 
 

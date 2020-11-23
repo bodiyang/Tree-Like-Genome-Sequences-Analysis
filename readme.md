@@ -37,3 +37,5 @@ The script works as follows:
 The script took about 53 minutes to run, and downloaded 215 SNP files
 
 ## Task 3
+
+The script `build_ind_genome.sh` outputs a file with each strain's DNA sequence at a specified range of the genome. The output file will contain a sequence for each strain with a `quality_variant_<strain_name>.txt` file downloaded in the `data` folder. The chromosome of interest and the starting and ending base positions on that chromosome are given as command line arguments. For example, the call `bash scripts/build_ind_genome.sh 1 997 1006` will generate a file called `chr1_000997_to_001006.phy` in the folder `alignments`. See [results](results.md) for details on what this file looks like.

@@ -20,10 +20,15 @@ fi
 
 if [[ -z $block_size ]] 
 then
-    if [[ $chromosome == "C" || $chromosome == "M" ]]
+    if [[ $chromosome == "C" ]] || [[ $chromosome == "M" ]]
     then
         block_size=20000
     else
         block_size=100000
     fi
 fi
+
+for block in {1..$block_size}
+do
+    if [[ ]]
+done

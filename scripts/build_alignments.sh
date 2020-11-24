@@ -36,7 +36,7 @@ flnm="data/TAIR10_chr"$chromosome".fas"
 chrom_size=`tail +2 $flnm | wc -m | sed -E 's/ //g'`
 block_start=$start_pos
 
-# loop over blocks and create output files
+# loop over blocks and create output files, calling build_ind_genome.sh to build the individual block
 for block in $(seq 1 $num_blocks)
 do
     echo $block_start" "$chrom_size" "$block

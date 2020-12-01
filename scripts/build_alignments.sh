@@ -36,10 +36,14 @@ flnm="data/TAIR10_chr"$chromosome".fas"
 chrom_size=`tail +2 $flnm | wc -m | sed -E 's/ //g'`
 block_start=$start_pos
 
+if [ -f "data/build_genome_out.txt" ]
+then
+    rm data/build_genome_out.txt
+fi 
+
 # loop over blocks and create output files, calling build_ind_genome.sh to build the individual block
 for block in $(seq 1 $num_blocks)
 do
-    echo $block_start" "$chrom_size" "$block
     if [[ $block_start -gt $chrom_size ]]
     then
         break
@@ -50,8 +54,11 @@ do
         block_end=$chrom_size
     fi
 
+    date +"%D %T"
     echo "creating alignments for "$block_start" to "$block_end
-    bash scripts/build_ind_genome.sh $chromosome $block_start $block_end
+    SECONDS=0
+    bash scripts/build_ind_genome.sh $chromosome $block_start $block_end >> data/build_genome_out.txt
+    echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))
 
     (( block_start += block_size ))
 done

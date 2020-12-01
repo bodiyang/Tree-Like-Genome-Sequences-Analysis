@@ -5,6 +5,7 @@ chromosome=$1
 start_pos=$2
 num_blocks=$3
 block_size=$4
+chrom_full="chr$1" 
 
 # check to make sure we get all the arguments we need
 if [[ -z $chromosome ]] || [[ -z $start_pos ]] || [[ -z $num_blocks ]]
@@ -57,23 +58,25 @@ do
     then
         break
     fi
-    block_end=$((block_start + block_size))
+    block_end=$((block_start + block_size - 1))
     if [[ $block_end -gt $chrom_size ]]
     then 
         block_end=$chrom_size
     fi
 
+    
     date +"%D %T"
-    echo "creating alignments for "$block_start" to "$block_end
+    echo "creating alignments for $block_start to $block_end"
     SECONDS=0
-    bash scripts/build_ind_genome.sh $chromosome $block_start $block_end >> data/build_genome_out.txt
+    bash scripts/build_ind_genome.sh $chromosome $block_start $block_end 
+    
     echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))
 
-    printf -v startnum "%06d" $start_pos #padding with zeros
-    printf -v endnum "%06d" $end_pos #padding with zeros
+    printf -v startnum "%09d" $block_start #padding with zeros
+    printf -v endnum "%09d" $block_end #padding with zeros
     cd iqtree
-    iqtree --no-log -djc -s ../alignments/"$chromosome"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chromosome"_"$startnum"_"$endnum"
-    rm ../alignments/"$chromosome"_"$startnum"_"$endnum".phy
+    iqtree --no-log -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
+    #rm ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy
     cd ..
     (( block_start += block_size ))
 done

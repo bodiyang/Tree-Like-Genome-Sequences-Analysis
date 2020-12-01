@@ -10,10 +10,10 @@ end_pos=$3
 numdiscrep=0 #Number of discrepancies between reference genome and reference nucleotides in SNP file in range of interest
 
 
-numstrands=$(ls -1q data/quality_variant*.txt | wc -l) #Number of strands that we have
+numstrands=$(ls -1q data/quality_variant*.txt | wc -l | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg') #Number of strands that we have
 ((seqlength = $end_pos-$start_pos+1)) #Length of sequence
-printf -v startnum "%06d" $start_pos #padding with zeros
-printf -v endnum "%06d" $end_pos #padding with zeros
+printf -v startnum "%010d" $start_pos #padding with zeros
+printf -v endnum "%010d" $end_pos #padding with zeros
 echo "${numstrands} ${seqlength}" > alignments/"$chromosome"_"$startnum"_"$endnum".phy #Create output file with first line
 
 
@@ -25,7 +25,10 @@ reference=$(tail -n +2 data/TAIR10_chr"$1".fas | tr -d '\n' | tail -c +$2 | head
 i=0
 for file in data/quality_variant*.txt
 do
-    if (i>5) break fi
+    if [[ i -gt 5 ]] 
+    then 
+        break 
+    fi
     ((i++))
     
     indseq=$reference 

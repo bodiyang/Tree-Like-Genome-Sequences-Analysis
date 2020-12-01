@@ -69,11 +69,12 @@ do
     bash scripts/build_ind_genome.sh $chromosome $block_start $block_end >> data/build_genome_out.txt
     echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))
 
-    printf -v startnum "%06d" $start_pos #padding with zeros
-    printf -v endnum "%06d" $end_pos #padding with zeros
+    printf -v startnum "%010d" $block_start #padding with zeros
+    printf -v endnum "%010d" $block_end #padding with zeros
+    chrom_full="chr"$chromosome
     cd iqtree
-    iqtree --no-log -djc -s ../alignments/"$chromosome"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chromosome"_"$startnum"_"$endnum"
-    rm ../alignments/"$chromosome"_"$startnum"_"$endnum".phy
+    iqtree -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
+    #rm ../alignments/"$chrom_full"_"$block_start"_"$block_end".phy
     cd ..
     (( block_start += block_size ))
 done

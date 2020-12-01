@@ -60,5 +60,11 @@ do
     bash scripts/build_ind_genome.sh $chromosome $block_start $block_end >> data/build_genome_out.txt
     echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))
 
+    printf -v startnum "%06d" $start_pos #padding with zeros
+    printf -v endnum "%06d" $end_pos #padding with zeros
+    cd iqtree
+    iqtree --no-log -djc -s ../alignments/"$chromosome"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chromosome"_"$startnum"_"$endnum"
+    rm ../alignments/"$chromosome"_"$startnum"_"$endnum".phy
+    cd ..
     (( block_start += block_size ))
 done

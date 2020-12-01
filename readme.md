@@ -43,3 +43,15 @@ The script `build_ind_genome.sh` outputs a file with each strain's DNA sequence 
 ## Task 4
 The script `build_alignments.sh` extracts consecutive and non-overlapping alignments (blocks) of a fixed length from a chosen chromosome. The script takes three arguments: chromosome (i.e., 1-5, C, M); starting position (with a starting index of 1); and number of blocks to produce. There is also a fourth optional argument: block size. For this optional argument, the default is 20,000 base pairs for the C and M chromosomes, and 100,000 base pairs for chromosomes 1-5.
 (The script will run a check of the arguments, to make sure the chromosome's name is in the correct format, starting position does not exceed the length of the chromosome). For Tasks 4-7, we've restricted our analysis to Chromosome 1. 
+
+Sample alignment files produced by the following command are included in the github repository
+```
+bash scripts/build_alignments.sh 1 30000001 3 500
+```
+
+## Task 5
+The script `build_alignments.sh` also takes care of producing trees for each block using iqtree. 
+Again, samples trees produced by the following command are included in the github repository
+```
+bash scripts/build_alignments.sh 1 30000001 3 500
+```

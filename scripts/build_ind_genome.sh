@@ -9,12 +9,13 @@ start_pos=$2
 end_pos=$3
 numdiscrep=0 #Number of discrepancies between reference genome and reference nucleotides in SNP file in range of interest
 
-
+# uncomment the next line to run on only the first 6 sequences as a test
+#numstrands=6
 numstrands=$(ls -1q data/quality_variant*.txt | wc -l | sed -nE 's/[[:space:]]*([0-9]+).*$/\1/pg') #Number of strands that we have
 ((seqlength = $end_pos-$start_pos+1)) #Length of sequence
 printf -v startnum "%010d" $start_pos #padding with zeros
 printf -v endnum "%010d" $end_pos #padding with zeros
-echo "${numstrands} ${seqlength}" > alignments/"$chromosome"_"$startnum"_"$endnum".phy #Create output file with first line
+printf "${numstrands} ${seqlength}" > alignments/"$chromosome"_"$startnum"_"$endnum".phy #Create output file with first line
 
 
 #Sequence of nucleotides in the reference genome
@@ -25,10 +26,11 @@ reference=$(tail -n +2 data/TAIR10_chr"$1".fas | tr -d '\n' | tail -c +$2 | head
 i=0
 for file in data/quality_variant*.txt
 do
-    if [[ i -gt 5 ]] 
-    then 
-        break 
-    fi
+    # uncomment these lines to run on only the first 6 sequences as a test
+    #if [[ i -gt 5 ]] 
+    #then 
+    #    break 
+    #fi
     ((i++))
     
     indseq=$reference 
@@ -59,7 +61,7 @@ do
 
     #Add line to output file
     strand=$(head -1 $file | awk '{print $1}')
-    echo "$strand  $indseq" >> alignments/"$chromosome"_"$startnum"_"$endnum".phy
+    printf "\n$strand $indseq" >> alignments/"$chromosome"_"$startnum"_"$endnum".phy
     echo "Allignment of strand $strand" generated
 done
 

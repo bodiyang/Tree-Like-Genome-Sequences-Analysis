@@ -57,7 +57,7 @@ do
     then
         break
     fi
-    block_end=$((block_start + block_size))
+    block_end=$((block_start + block_size - 1))
     if [[ $block_end -gt $chrom_size ]]
     then 
         block_end=$chrom_size
@@ -73,8 +73,8 @@ do
     printf -v endnum "%010d" $block_end #padding with zeros
     chrom_full="chr"$chromosome
     cd iqtree
-    iqtree -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
+    iqtree --no-log --quiet -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
     #rm ../alignments/"$chrom_full"_"$block_start"_"$block_end".phy
     cd ..
-    (( block_start += block_size ))
+    block_start=$(( block_end + 1 ))
 done

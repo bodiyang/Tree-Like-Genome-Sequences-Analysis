@@ -22,8 +22,12 @@ reference=$(tail -n +2 data/TAIR10_chr"$1".fas | tr -d '\n' | tail -c +$2 | head
 
 
 #We now build each strand's sequence based on the reference sequence and the list of its SNP's.
+i=0
 for file in data/quality_variant*.txt
 do
+    if (i>5) break fi
+    ((i++))
+    
     indseq=$reference 
 
     #Create a temporary file snp.txt with list of SNP's in range of interest

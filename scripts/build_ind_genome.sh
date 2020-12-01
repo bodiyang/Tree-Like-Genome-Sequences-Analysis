@@ -15,7 +15,7 @@ numstrains=$(ls -1q data/quality_variant*.txt | wc -l | sed -nE 's/[[:space:]]*(
 ((seqlength = $end_pos-$start_pos+1)) #Length of sequence
 printf -v startnum "%010d" $start_pos #padding with zeros
 printf -v endnum "%010d" $end_pos #padding with zeros
-printf "${numstrains} ${seqlength}" > alignments/"$chromosome"_"$startnum"_"$endnum".phy #Create output file with first line
+printf "${numstrains} ${seqlength}" > alignments/"$chrom_full"_"$startnum"_"$endnum".phy #Create output file with first line
 
 
 #Sequence of nucleotides in the reference genome
@@ -60,7 +60,7 @@ do
 
     #Add line to output file
     strain=$(head -1 $file | awk '{print $1}')
-    printf "\n$strain $indseq" >> alignments/"$chromosome"_"$startnum"_"$endnum".phy
+    printf "\n$strain $indseq" >> alignments/"$chrom_full"_"$startnum"_"$endnum".phy
     echo "Allignment of strain $strain" generated
 done
 

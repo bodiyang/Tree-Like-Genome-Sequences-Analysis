@@ -76,7 +76,7 @@ do
     printf -v endnum "%010d" $block_end #padding with zeros
     cd iqtree
     iqtree --no-log -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
-    #rm ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy
+    rm ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy
     cd ..
     block_start=$(( block_end + 1 ))
 done

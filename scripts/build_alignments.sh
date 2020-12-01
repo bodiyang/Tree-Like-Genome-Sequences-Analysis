@@ -20,6 +20,15 @@ then
     exit 1
 fi 
 
+# check to make sure starting position is at the "interior" portion of the sequence
+if [[ $chromosome -ge 1 ]] && [[ $chromosome -le 5 ]]
+then
+    if [[ $start_pos -lt 3000000 ]]
+    then
+        echo "starting position is in the beginning telomere."
+        fi
+fi 
+
 # if we don't have a block size set to default
 if [[ -z $block_size ]] 
 then

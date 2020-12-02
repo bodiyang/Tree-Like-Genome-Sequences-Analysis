@@ -73,7 +73,7 @@ do
     printf -v startnum "%010d" $block_start #padding with zeros
     printf -v endnum "%010d" $block_end #padding with zeros
     cd iqtree
-    iqtree --quiet --no-log -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T 4 -pre "$chrom_full"_"$startnum"_"$endnum"
+    iqtree --quiet --no-log -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
     rm ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy
     cd ..
     echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))

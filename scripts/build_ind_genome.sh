@@ -15,7 +15,7 @@ numstrains=$(ls -1q data/quality_variant*.txt | wc -l | sed -nE 's/[[:space:]]*(
 ((seqlength = $end_pos-$start_pos+1)) #Length of sequence
 printf -v startnum "%010d" $start_pos #padding with zeros
 printf -v endnum "%010d" $end_pos #padding with zeros
-printf "${numstrains} ${seqlength}" > alignments/"$chromosome"_"$startnum"_"$endnum".phy #Create output file with first line
+printf "${numstrains} ${seqlength}" > alignments/"$chrom_full"_"$startnum"_"$endnum".phy #Create output file with first line
 
 
 #Sequence of nucleotides in the reference genome
@@ -35,7 +35,7 @@ do
     
     #Create a temporary file snp.txt with list of SNP's in range of interest
     #Each line of snp.txt is an SNP in range of interest 
-    awk -v awk_chrom="$chrom_full" -v awk_startpos=$start_pos -v awk_endpos=$end_pos '$2 ~ awk_chrom && $3 <= awk_endpos &&  $3 >= awk_startpos { print $3 "\t" $4 "\t" $5}' $file > snp.txt
+    awk -v awk_chrom="$chrom_full" -v awk_startpos=$start_pos -v awk_endpos=$end_pos '$2 ~ awk_chrom && $3 <= awk_endpos &&  $3 >= awk_startpos { print $3 "\t" $4 "\t" $5}' "$file" > snp.txt
     
     #We iterate through the lines of snp.txt to make the necessary edits to the reference sequence
     indseq=$reference 
@@ -59,8 +59,8 @@ do
     done < snp.txt
 
     #Add line to output file
-    strain=$(head -1 $file | awk '{print $1}')
-    printf "\n$strain $indseq" >> alignments/"$chromosome"_"$startnum"_"$endnum".phy
+    strain=$(head -1 "$file" | awk '{print $1}')
+    printf "\n$strain $indseq" >> alignments/"$chrom_full"_"$startnum"_"$endnum".phy
     echo "Allignment of strain $strain" generated
 done
 

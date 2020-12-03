@@ -90,3 +90,10 @@ Blocks 17-23 were started at 21:18:05 on December 2 on Bodi's mac. This run fini
 Blocks 24-30 were started at 18:46:51 on December 2 on Nathan's PC. This run has yet to finish as of 15:08 on December 3.
 - Alignment 5300001 to 5400000 took 479 minutes, 45 seconds
 - Alignment 5400001 to 5500000 took 524 minutes, 57 seconds
+
+
+# Task 6
+The script `calc_tree_distances.sh` first gathers all trees (from files named chrX*.treefile in the iqtree folder, where X is the passed in chromosome) into a file called chrX-all.tre in the treedist folder. It then runs IQ tree to calculate Robinson-Foulds distances between
+- all trees
+- adjacent trees
+The output from this run is put into the treedist folder, as files called chrX-adj_pairs.rfdist and chrX-all_pairs.rfdist. 

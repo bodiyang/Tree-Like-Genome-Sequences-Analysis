@@ -97,3 +97,8 @@ The script `calc_tree_distances.sh` first gathers all trees (from files named ch
 - all trees
 - adjacent trees
 The output from this run is put into the treedist folder, as files called chrX-adj_pairs.rfdist and chrX-all_pairs.rfdist. 
+
+This script was run from Sam's mac as follows:
+```
+bash calc_tree_distances.sh 1
+```

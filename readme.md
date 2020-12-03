@@ -78,5 +78,13 @@ Blocks 9-16 were started at 22:16:06 on December 1 on Sam's mac. This run finish
 - Alignments 4400001 to 4500000 took 49 minutes, 06 seconds
 - Alignments 4500001 to 4600000 took 75 minutes, 23 seconds
 
+Blocks 17-24 were started at 21:18:05 on December 2 on Bodi's mac. This run finished at 09:56:42 on December 3. It took 12 hours 38 minutes 37 seconds total.
+- Alignments 4600001 to 4700000 took 88 minutes, 05 seconds
+- Alignments 4700001 to 4800000 took 92 minutes, 49 seconds
+- Alignments 4800001 to 4900000 took 119 minutes, 24 seconds
+- Alignments 4900001 to 5000000 took 92 minutes, 05 seconds
+- Alignments 5000001 to 5100000 took 87 minutes, 52 seconds
+- Alignments 5100001 to 5200000 took 195 minutes, 42 seconds
+- Alignments 5200001 to 5300000 took 82 minutes, 30 seconds
 
 

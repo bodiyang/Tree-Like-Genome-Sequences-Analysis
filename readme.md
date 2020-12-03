@@ -59,7 +59,6 @@ bash scripts/build_alignments.sh 1 30000001 3 500
 For 30 blocks of size 100000 on chromosome 1:
 
 Blocks 1-8 were started at 18:09:13 on December 1 on Evan's mac. The run finished at 11:23:21 on December 2. It took 17 hours 14 minutes and 8 seconds in total:
-23:03:51
 - Alignments 3000001 to 3100000 took 128 minutes and 22 seconds
 - Alignments 3100001 to 3200000 took 166 minutes and 16 seconds
 - Alignments 3200001 to 3300000 took 187 minutes and 30 seconds

@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+# this script builds alignment files for consecutive blocks. 
+# input should be chromsome (1-5, M, or C), start position, number of blocks, and block size
+# block size is optional, 20000 will be used for chromosomes M or C by default, 100000 for chromsomes 1-5
+# example:
+#    bash build_alignments.sh 1 300001 8 80000
+# each block is output in a file named chrX_YYYYYYYYYY_ZZZZZZZZZZ 
+# where X is the chromosome, Y is the starting position of the block (padded to 10 numbers), 
+# and Z is the ending position (padded to 10 zeroes)
+# this script should be run from the fp-group-2 folder, not the scripts folder
+
 # give inputs better variable names
 chromosome=$1
 start_pos=$2

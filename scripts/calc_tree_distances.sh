@@ -3,6 +3,9 @@
 # bash calc_tree_distances.sh Chr 
 # where chr is the chromosome to calculate distances for. For example, for chromosome 1:
 # bash calc_tree_distances.sh 1
+# output for this script will be in the treedist directory in files named
+# chrX-all.tre (all trees in one file, in the order they exist in the directory)
+# chrX-all_pairs.rfdist and chrX-adj_pairs.rfdist (distances between trees)
 
 # first input should be chromosome number
 chrom_full="chr"$1

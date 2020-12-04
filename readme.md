@@ -90,6 +90,7 @@ Blocks 17-23 were started at 21:18:05 on December 2 on Bodi's mac. This run fini
 Blocks 24-30 were started at 18:46:51 on December 2 on Nathan's PC. This run has yet to finish as of 15:08 on December 3.
 - Alignment 5300001 to 5400000 took 479 minutes, 45 seconds
 - Alignment 5400001 to 5500000 took 524 minutes, 57 seconds
+- Alignment 5500001 to 5600000 took 425 minutes, 17 seconds
 
 
 # Task 6

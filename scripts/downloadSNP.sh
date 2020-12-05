@@ -13,7 +13,7 @@ if [ ! -d 'data/' ]
 then
     mkdir data
 else # otherwise delete whatever's in it
-    rm data/*
+    rm data/quality_variant*
 fi
 
 cd data

@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+# this script builds alignment files for consecutive blocks. 
+# input should be chromsome (1-5, M, or C), start position, number of blocks, and block size
+# block size is optional, 20000 will be used for chromosomes M or C by default, 100000 for chromsomes 1-5
+# example:
+#    bash build_alignments.sh 1 300001 8 80000
+# each block is output in a file named chrX_YYYYYYYYYY_ZZZZZZZZZZ 
+# where X is the chromosome, Y is the starting position of the block (padded to 10 numbers), 
+# and Z is the ending position (padded to 10 zeroes)
+# this script should be run from the fp-group-2 folder, not the scripts folder
+
 # give inputs better variable names
 chromosome=$1
 start_pos=$2
@@ -68,15 +78,14 @@ do
     date +"%D %T"
     echo "creating alignments for $block_start to $block_end"
     SECONDS=0
-    bash scripts/build_ind_genome.sh $chromosome $block_start $block_end 
-
-    echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))
+    bash scripts/build_ind_genome.sh $chromosome $block_start $block_end > data/build_genome_out.txt
 
     printf -v startnum "%010d" $block_start #padding with zeros
     printf -v endnum "%010d" $block_end #padding with zeros
     cd iqtree
     iqtree --no-log -djc -s ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy -m HKY+G -T AUTO -pre "$chrom_full"_"$startnum"_"$endnum"
-    #rm ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy
+    rm ../alignments/"$chrom_full"_"$startnum"_"$endnum".phy
     cd ..
+    echo "Run time "$(($SECONDS / 60))":"$(($SECONDS % 60))
     block_start=$(( block_end + 1 ))
 done

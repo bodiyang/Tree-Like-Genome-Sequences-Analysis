@@ -55,3 +55,55 @@ Again, samples trees produced by the following command are included in the githu
 ```
 bash scripts/build_alignments.sh 1 30000001 3 500
 ```
+
+For 30 blocks of size 100000 on chromosome 1:
+
+Blocks 1-8 were started at 18:09:13 on December 1 on Evan's mac. The run finished at 11:23:21 on December 2. It took 17 hours 14 minutes and 8 seconds in total:
+- Alignments 3000001 to 3100000 took 128 minutes and 22 seconds
+- Alignments 3100001 to 3200000 took 166 minutes and 16 seconds
+- Alignments 3200001 to 3300000 took 187 minutes and 30 seconds
+- Alignments 3300001 to 3400000 took 162 minutes and 5 seconds
+- Alignments 3400001 to 3500000 took 87 minutes and 5 seconds
+- Alignments 3500001 to 3600000 took 89 minutes and 42 seconds
+- Alignments 3600001 to 3700000 took 72 minutes and 52 seconds
+- Alignments 3700001 to 3800000 took 140 minutes and 16 seconds
+
+Blocks 9-16 were started at 22:16:06 on December 1 on Sam's mac. This run finished at 07:32:47 on December 2. It took 9 hours 16 minutes 44 seconds total.
+- Alignments 3800001 to 3900000 took 71 minutes, 42 seconds
+- Alignments 3900001 to 4000000 took 50 minutes, 13 seconds
+- Alignments 4000001 to 4100000 took 74 minutes, 00 seconds
+- Alignments 4100001 to 4200000 took 74 minutes, 22 seconds
+- Alignments 4200001 to 4300000 took 74 minutes, 37 seconds
+- Alignments 4300001 to 4400000 took 87 minutes, 18 seconds
+- Alignments 4400001 to 4500000 took 49 minutes, 06 seconds
+- Alignments 4500001 to 4600000 took 75 minutes, 23 seconds
+
+Blocks 17-23 were started at 21:18:05 on December 2 on Bodi's mac. This run finished at 09:56:42 on December 3. It took 12 hours 38 minutes 37 seconds total.
+- Alignments 4600001 to 4700000 took 88 minutes, 05 seconds
+- Alignments 4700001 to 4800000 took 92 minutes, 49 seconds
+- Alignments 4800001 to 4900000 took 119 minutes, 24 seconds
+- Alignments 4900001 to 5000000 took 92 minutes, 05 seconds
+- Alignments 5000001 to 5100000 took 87 minutes, 52 seconds
+- Alignments 5100001 to 5200000 took 195 minutes, 42 seconds
+- Alignments 5200001 to 5300000 took 82 minutes, 30 seconds
+
+Blocks 24-30 were started at 18:46:51 on December 2 on Nathan's PC. This run finished at 5:20:17 on December 5.
+- Alignment 5300001 to 5400000 took 479 minutes, 45 seconds
+- Alignment 5400001 to 5500000 took 524 minutes, 57 seconds
+- Alignment 5500001 to 5600000 took 425 minutes, 17 seconds
+- Alignment 5600001 to 5700000 took 790 minutes, 30 seconds
+- Alignment 5700001 to 5800000 took 359 minutes, 46 seconds
+- Alignment 5800001 to 5900000 took 564 minutes, 45 seconds
+- Alignment 5900001 to 6000000 took 369 minutes, 46 seconds
+
+
+# Task 6
+The script `calc_tree_distances.sh` first gathers all trees (from files named chrX*.treefile in the iqtree folder, where X is the passed in chromosome) into a file called chrX-all.tre in the treedist folder. It then runs IQ tree to calculate Robinson-Foulds distances between
+- all trees
+- adjacent trees
+The output from this run is put into the treedist folder, as files called chrX-adj_pairs.rfdist and chrX-all_pairs.rfdist. 
+
+This script was run from Sam's mac as follows:
+```
+bash calc_tree_distances.sh 1
+```

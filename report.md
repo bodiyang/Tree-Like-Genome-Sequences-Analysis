@@ -15,6 +15,8 @@ The minimum file size was 737104 bytes.
 
 The maximum file size was 34726050 bytes.
 
+The file quality_variant_Utrecht.txt could not be downloaded.
+
 
 ## Task 3
 

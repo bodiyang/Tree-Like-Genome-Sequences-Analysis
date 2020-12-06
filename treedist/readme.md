@@ -1,5 +1,5 @@
 ## Treedist
-This file contains four files produced as tree distances from the scirpt `calc_tree_distances.sh`:
+This folder contains four files produced as tree distances from the scirpt `calc_tree_distances.sh`:
 
 - `chr1-adj_pairs.rfdist`: tree distances between the trees of the adjacent blocks of 30 blocks in chromosome 1 position 3000001 to 6000000
 

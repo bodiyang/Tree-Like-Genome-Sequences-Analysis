@@ -1,3 +1,5 @@
+See [here](readme.md) for detailed information on the scripts run in each part.
+
 ## Task 1
 
 TAIR10 Reference genome file sizes are as follows.
@@ -41,7 +43,28 @@ We decided to analyze chromosome 1 for our project. We generated 30 blocks of le
 
 The program [IQ-TREE](http://www.iqtree.org) estimates genealogical trees based on DNA.
 
-We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.  
+We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.
 
+Tasks 4 and 5 were run at once, split between the four of us. 
 
+For 30 blocks of size 100000 on chromosome 1:
+
+Blocks 1-8, run on Evan's mac, took 17 hours 14 minutes and 8 seconds in total.
+Blocks 9-16, run on Sam's mac, took 9 hours 16 minutes 44 seconds total.
+Blocks 17-23, run on Bodi's mac, took 12 hours 38 minutes 37 seconds total.
+Blocks 24-30, run on Nathan's PC, took 2 days, 10 hours, 34 minutes and 46 seconds.
+
+Nathan's PC appears to be unusually slow, so for the purposes of predicting total run time we will ignore it. The 23 blocks generated across Evan, Sam, and Bodi's macs took on average 102 minutes per block. Extrapolating this, to run for all blocks on all chromosomes would take about 2102 hours, 54 minutes (a little more than 87 days of total computation time.)
+
+## Task 6
+
+The program IQ-TREE was again used, this time to calculate the Robinson-Foulds distances between (a) all pairs of trees and (b) adjacent trees. 
+
+## Task 7
+
+Finally, we analyzed in R the distances calculated in step 6. 
+
+First, we compared the distances we calculated between all pairs of trees to the distribution of distances between random trees. In the overlaid histograms of the two distributions that we produce, the distribution of distances between random trees is concentrated between 420 and 424, whereas the distribution of distances between trees estimated from the same chromosome is normally shaped with the bulk of the distribution between 390 and 410. Our conclusion is that the trees we estimated in Task 6 are closer together than would be expected if these trees were random. This is reasonable since they are trees estimated from different blocks of the same chromosome.
+
+Next, we compared the distances between all pairs of trees to the distances between trees estimated from adjacent alignments. The distances between trees estimated from adjacent alignments is shifted left from the distances between all pairs of trees. This is reasonable since there is less "recombination" between neighboring blocks than between blocks at opposing ends of the chromosome. 
 

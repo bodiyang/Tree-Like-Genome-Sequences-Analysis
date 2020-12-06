@@ -98,20 +98,26 @@ Blocks 24-30 were started at 18:46:51 on December 2 on Nathan's PC. This run fin
 
 
 # Task 6
-The script `calc_tree_distances.sh` first gathers all trees (from files named chrX*.treefile in the iqtree folder, where X is the passed in chromosome) into a file called chrX-all.tre in the treedist folder. It then runs IQ tree to calculate Robinson-Foulds distances between
-- all trees
-- adjacent trees
-The output from this run is put into the treedist folder, as files called chrX-adj_pairs.rfdist and chrX-all_pairs.rfdist. 
+The script `calc_tree_distances.sh` first gathers all trees (from files named `chrX*.treefile` in the `iqtree folder`, where X is the passed in chromosome) into a file called chrX-all.tre in the treedist folder. It then runs IQ tree to calculate Robinson-Foulds distances between
+- all pairs of trees estimated 
+- pairs of trees estimated from adjacent alignments of DNA
+The output from this run is put into the treedist folder, as files called chrX-adj_pairs.rfdist and chrX-all_pairs.rfdist.
 
-This script was run from Sam's mac as follows:
+It is important that all test files of the form chrX*.treefile in the iqtree folder be deleted before the script is run, otherwise they will be included in the analysis. For example, the files `chr1_0030000001_0030000500.treefile`, `chr1_0030000501_0030001000.treefile`, and `chr1_0030001001_0030001500.treefile`, which are currently in the `iqtree folder`, should be deleted, before running the script.  
+
+After deleting these test tree files, the script was run from Sam's mac as follows:
 ```
 bash calc_tree_distances.sh 1
 ```
 
 # Task 7
-The script `plot_distance_distributions.R` read in the tree distances `chr1-all_pairs.rfdist` and `chr1-adj_pairs.rfdist` under treedist directory. The script will plot the tree distances of all pairs of and adjacent paris of trees of the same chromosome. The output plot will be saved as `AdjVsRandTreeDistances.pdf` under current directory.
+The script `plot_distance_distributions.R` reads in the tree distances `chr1-all_pairs.rfdist` and `chr1-adj_pairs.rfdist` from the treedist directory. 
+The script creates two different histogram plots, saved as `SameChromVsRandomDistances.pdf` and `AdjVsAnyBlocksDistances.pdf` in the `plots` directory. The first plot is a comparison of the RF distances between trees estimated from different alignments of the same chromosome in each plant strain (found in Task 6) versus the RF distances between pairs of random trees, which are distributed as a linear function of a Poisson random variable. The second plot is a comparison of (a random sample of) the RF distances between all pairs of trees estimated from different alignments of the same chromosome versus only the RF distances between trees estimated from adjacent alignments of the same chromosome.
 
 This script can be run with the command:
 ```
 Rscript scripts/plot_distance_distributions.R
 ```
+
+
+

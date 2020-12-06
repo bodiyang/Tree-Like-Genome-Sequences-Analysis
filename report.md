@@ -1,4 +1,5 @@
 ## Task 1
+
 TAIR10 Reference genome file sizes are as follows.
 1. _chr1.fas: 29.4 MB
 2. _chr2.fas: 19.0 MB
@@ -9,6 +10,7 @@ TAIR10 Reference genome file sizes are as follows.
 7. _chrM.fas: 363 kB
 
 ## Task 2
+
 215 files were downloaded.
 
 The minimum file size was 737104 bytes.
@@ -40,3 +42,6 @@ We decided to analyze chromosome 1 for our project. We generated 30 blocks of le
 The program [IQ-TREE](http://www.iqtree.org) estimates genealogical trees based on DNA.
 
 We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.  
+
+
+

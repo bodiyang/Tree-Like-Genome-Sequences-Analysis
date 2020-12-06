@@ -1,5 +1,5 @@
 ## Plots
-The following plots are contained in this folder: SameChromVsRandomDistances.pdf and AdjVsAnyBlocksDistances.pdf
+Two plots of trees distances are contained in this folder: `SameChromVsRandomDistances.pdf` and `AdjVsAnyBlocksDistances.pdf`
 
 The first plot is a comparison of the RF distances between trees estimated from different alignments of the same chromosome in each plant strain versus the RF distances between pairs of random trees, which are distributed as a linear function of a Poisson random variable. 
 

@@ -37,4 +37,6 @@ We decided to analyze chromosome 1 for our project. We generated 30 blocks of le
 
 ## Task 5
 
-We modified our script for Task 4 to 
+The program [IQ-TREE](http://www.iqtree.org) estimates genealogical trees based on DNA.
+
+We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.  

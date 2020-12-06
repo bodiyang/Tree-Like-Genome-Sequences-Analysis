@@ -1,8 +1,0 @@
-data/*
-.Rproj.user
-iqtree/*.log
-iqtree/*.ckp.gz
-iqtree/fake*
-treedist/*.log
-.DS_Store
-*out.txt

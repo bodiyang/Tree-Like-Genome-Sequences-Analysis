@@ -1,13 +1,3 @@
-See:
-- [overview](overview.md) of the project: learning goals,
-  group work, and overview of tasks and pipeline
-- [step by step](stepsinstructions.md) instructions.
-
-Now delete these lines and replace by your own "readme"
-to document your pipeline.
-Your result summary should go in a different markdown file,
-`report.md`.
-
 ## Task 1
 TAIR10 Reference genome file sizes are as follows.
 1. _chr1.fas: 29.4 MB
@@ -38,7 +28,7 @@ The script took about 53 minutes to run, and downloaded 215 SNP files
 
 ## Task 3
 
-The script `build_ind_genome.sh` outputs a file with each strain's DNA sequence at a specified range of the genome. The output file will contain a sequence for each strain with a `quality_variant_<strain_name>.txt` file downloaded in the `data` folder. The chromosome of interest and the starting and ending base positions on that chromosome are given as command line arguments. For example, the call `bash scripts/build_ind_genome.sh 1 997 1006` will generate a file called `chr1_000997_to_001006.phy` in the folder `alignments`. See [report](report.md) for details on what this file looks like.
+The script `build_ind_genome.sh` outputs a file with each strain's DNA sequence at a specified range of the genome. This script is embedded within the script for task 4, `build_alignments.sh`, and thus does not require being run individually. The output file will contain a sequence for each strain with a `quality_variant_<strain_name>.txt` file downloaded in the `data` folder. The chromosome of interest and the starting and ending base positions on that chromosome are given as command line arguments. For example, the call `bash scripts/build_ind_genome.sh 1 997 1006` will generate a file called `chr1_000997_to_001006.phy` in the folder `alignments`. See [report](report.md) for details on what this file looks like.
 
 ## Task 4
 The script `build_alignments.sh` extracts consecutive and non-overlapping alignments (blocks) of a fixed length from a chosen chromosome. The script takes three arguments: chromosome (i.e., 1-5, C, M); starting position (with a starting index of 1); and number of blocks to produce. There is also a fourth optional argument: block size. For this optional argument, the default is 20,000 base pairs for the C and M chromosomes, and 100,000 base pairs for chromosomes 1-5.

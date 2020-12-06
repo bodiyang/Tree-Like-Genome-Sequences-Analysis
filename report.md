@@ -60,3 +60,4 @@ The program IQ-TREE was again used, this time to calculate the Robinson-Foulds d
 
 ## Task 7
 
+![](plots/SameChromVsRandomDistances.png)

@@ -29,12 +29,14 @@ With 215 strains downloaded (i.e. 215 `quality_variant_<strain_name>.txt` files 
     
 followed by the 213 other strains' sequences.
 
-##Task 4 
+## Task 4 
 
 For tasks 4, we built a script that iteratively calls `build_ind_genome` in order to extract from a given chromosome non-overlapping, consecutive blocks of base pairs ("alignments") for each strain. 
 
 We decided to analyze chromosome 1 for our project. We generated 30 blocks of length 100,000 base pairs. In order to avoid analyzing the telomeres, we start extracting at base pair 3 million and 1. That is, the first base pair of the first block is at position 3000001 in the chromosome.   
 
-##Task 5
+## Task 5
 
-We modified our script for Task 4 to 
+The program [IQ-TREE](http://www.iqtree.org) estimates genealogical trees based on DNA.
+
+We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.  

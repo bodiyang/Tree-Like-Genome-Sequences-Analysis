@@ -87,7 +87,7 @@ Blocks 17-23 were started at 21:18:05 on December 2 on Bodi's mac. This run fini
 - Alignments 5100001 to 5200000 took 195 minutes, 42 seconds
 - Alignments 5200001 to 5300000 took 82 minutes, 30 seconds
 
-Blocks 24-30 were started at 18:46:51 on December 2 on Nathan's PC. This run finished at 5:20:17 on December 5.
+Blocks 24-30 were started at 18:46:51 on December 2 on Nathan's PC. This run finished at 5:20:17 on December 5. It took 2 days, 10 hours, 34 minutes and 46 seconds.
 - Alignment 5300001 to 5400000 took 479 minutes, 45 seconds
 - Alignment 5400001 to 5500000 took 524 minutes, 57 seconds
 - Alignment 5500001 to 5600000 took 425 minutes, 17 seconds
@@ -106,4 +106,12 @@ The output from this run is put into the treedist folder, as files called chrX-a
 This script was run from Sam's mac as follows:
 ```
 bash calc_tree_distances.sh 1
+```
+
+# Task 7
+The script `plot_distance_distributions.R` read in the tree distances `chr1-all_pairs.rfdist` and `chr1-adj_pairs.rfdist` under treedist directory. The script will plot the tree distances of all pairs of and adjacent paris of trees of the same chromosome. The output plot will be saved as `AdjVsRandTreeDistances.pdf` under current directory.
+
+This script can be run with the command:
+```
+Rscript scripts/plot_distance_distributions.R
 ```

@@ -1,13 +1,3 @@
-See:
-- [overview](overview.md) of the project: learning goals,
-  group work, and overview of tasks and pipeline
-- [step by step](stepsinstructions.md) instructions.
-
-Now delete these lines and replace by your own "readme"
-to document your pipeline.
-Your result summary should go in a different markdown file,
-`report.md`.
-
 ## Task 1
 TAIR10 Reference genome file sizes are as follows.
 1. _chr1.fas: 29.4 MB

@@ -1,3 +1,5 @@
+See [here](readme.md) for detailed information on the scripts run in each part.
+
 ## Task 1
 TAIR10 Reference genome file sizes are as follows.
 1. _chr1.fas: 29.4 MB
@@ -39,4 +41,22 @@ We decided to analyze chromosome 1 for our project. We generated 30 blocks of le
 
 The program [IQ-TREE](http://www.iqtree.org) estimates genealogical trees based on DNA.
 
-We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.  
+We modified the script for Task 4 so that it runs IQ-TREE on the alignment files it creates, thereby estimating a phylogenetic tree from each alignment.
+
+Tasks 4 and 5 were run at once, split between the four of us. 
+
+For 30 blocks of size 100000 on chromosome 1:
+
+Blocks 1-8, run on Evan's mac, took 17 hours 14 minutes and 8 seconds in total.
+Blocks 9-16, run on Sam's mac, took 9 hours 16 minutes 44 seconds total.
+Blocks 17-23, run on Bodi's mac, took 12 hours 38 minutes 37 seconds total.
+Blocks 24-30, run on Nathan's PC, took 2 days, 10 hours, 34 minutes and 46 seconds.
+
+Nathan's PC appears to be unusually slow, so for the purposes of predicting total run time we will ignore it. The 23 blocks generated across Evan, Sam, and Bodi's macs took on average 102 minutes per block. Extrapolating this, to run for all blocks on all chromosomes would take about 2102 hours, 54 minutes (a little more than 87 days of total computation time.)
+
+## Task 6
+
+The program IQ-TREE was again used, this time to calculate the Robinson-Foulds distances between (a) all pairs of trees and (b) adjacent trees.
+
+## Task 7
+

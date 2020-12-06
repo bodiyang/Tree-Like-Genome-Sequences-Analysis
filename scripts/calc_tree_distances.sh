@@ -40,3 +40,4 @@ iqtree -t $all_file -rf_all -T AUTO -pre $chrom_full"-all_pairs"
 
 # calculate Robinson-Foulds distance for adjacent pairs
 iqtree -t $all_file -rf_adj -T AUTO -pre $chrom_full"-adj_pairs"
+

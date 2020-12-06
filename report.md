@@ -1,6 +1,7 @@
 See [here](readme.md) for detailed information on the scripts run in each part.
 
 ## Task 1
+
 TAIR10 Reference genome file sizes are as follows.
 1. _chr1.fas: 29.4 MB
 2. _chr2.fas: 19.0 MB
@@ -11,6 +12,7 @@ TAIR10 Reference genome file sizes are as follows.
 7. _chrM.fas: 363 kB
 
 ## Task 2
+
 215 files were downloaded.
 
 The minimum file size was 737104 bytes.
@@ -56,8 +58,13 @@ Nathan's PC appears to be unusually slow, so for the purposes of predicting tota
 
 ## Task 6
 
-The program IQ-TREE was again used, this time to calculate the Robinson-Foulds distances between (a) all pairs of trees and (b) adjacent trees.
+The program IQ-TREE was again used, this time to calculate the Robinson-Foulds distances between (a) all pairs of trees and (b) adjacent trees. 
 
 ## Task 7
 
-![](plots/SameChromVsRandomDistances.png)
+Finally, we analyzed in R the distances calculated in step 6. 
+
+First, we compared the distances we calculated between all pairs of trees to the distribution of distances between random trees. In the overlaid histograms of the two distributions that we produce, the distribution of distances between random trees is concentrated between 420 and 424, whereas the distribution of distances between trees estimated from the same chromosome is normally shaped with the bulk of the distribution between 390 and 410. Our conclusion is that the trees we estimated in Task 6 are closer together than would be expected if these trees were random. This is reasonable since they are trees estimated from different blocks of the same chromosome.
+
+Next, we compared the distances between all pairs of trees to the distances between trees estimated from adjacent alignments. The distances between trees estimated from adjacent alignments is shifted left from the distances between all pairs of trees. This is reasonable since there is less "recombination" between neighboring blocks than between blocks at opposing ends of the chromosome. 
+

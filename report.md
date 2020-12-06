@@ -26,3 +26,6 @@ With 215 strains downloaded (i.e. 215 `quality_variant_<strain_name>.txt` files 
     ...
     
 followed by the 213 other strains' sequences.
+
+
+## Task 4 

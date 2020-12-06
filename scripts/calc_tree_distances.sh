@@ -1,6 +1,6 @@
 #!/bin/bash
 # this script should be run from the fp-group-2 folder as follows:
-# bash calc_tree_distances.sh Chr 
+# bash calc_tree_distances.sh chr 
 # where chr is the chromosome to calculate distances for. For example, for chromosome 1:
 # bash calc_tree_distances.sh 1
 # output for this script will be in the treedist directory in files named

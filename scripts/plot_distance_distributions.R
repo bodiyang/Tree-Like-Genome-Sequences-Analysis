@@ -19,7 +19,7 @@ blockvsrand <- blockvsrand %>% mutate(ComparisonBetween = replace(ComparisonBetw
 
 bvr.plot <- ggplot(data=blockvsrand, aes(color=ComparisonBetween, fill=ComparisonBetween)) +
   geom_histogram(aes(x=Distance), alpha=0.5, position="identity") +
-  labs(title = "Tree distances") +
+  labs(title = "Distances Between Random Trees and Those on the Same Chromsome") +
   theme(legend.position = "right")
 plot(bvr.plot)
 ggsave("SameChromVsRandomDistances.png", path = "plots/")
@@ -36,7 +36,7 @@ tree_dists <- data.frame(tree_dists)
 # plot tree distances
 pb <- ggplot(data=tree_dists, aes(color=ComparisonBetween, fill=ComparisonBetween)) +
 geom_histogram(aes(x=Distance), alpha=0.5,binwidth=4, position="identity") 
-pb <- pb + theme(legend.position="right") + labs(title= "Tree Distances")
+pb <- pb + theme(legend.position="right") + labs(title= "Tree Distances Between Trees on Same Chromosome")
 plot(pb)
 ggsave("AdjVsAnyBlocksDistances.png", path="plots/")
 

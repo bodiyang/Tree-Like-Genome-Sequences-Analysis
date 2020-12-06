@@ -107,3 +107,11 @@ This script was run from Sam's mac as follows:
 ```
 bash calc_tree_distances.sh 1
 ```
+
+# Task 7
+The script `plot_distance_distributions.R` read in the tree distances `chr1-all_pairs.rfdist` and `chr1-adj_pairs.rfdist` under treedist directory. The script will plot the tree distances of all pairs of and adjacent paris of trees of the same chromosome. The output plot will be saved as `AdjVsRandTreeDistances.pdf` under current directory.
+
+This script can be run with the command:
+```
+Rscript scripts/plot_distance_distributions.R
+```

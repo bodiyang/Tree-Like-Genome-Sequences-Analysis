@@ -22,7 +22,7 @@ bvr.plot <- ggplot(data=blockvsrand, aes(color=ComparisonBetween, fill=Compariso
   labs(title = "Tree distances") +
   theme(legend.position = "right")
 plot(bvr.plot)
-ggsave("SameChromVsRandomDistances.pdf", path = "plots/")
+ggsave("SameChromVsRandomDistances.png", path = "plots/")
 
 # Task 7 B
 # create a dataframe with adjacent tree distances as well as distances from randomly sampled trees from the same chromosome
@@ -38,7 +38,7 @@ pb <- ggplot(data=tree_dists, aes(color=ComparisonBetween, fill=ComparisonBetwee
 geom_histogram(aes(x=Distance), alpha=0.5,binwidth=4, position="identity") 
 pb <- pb + theme(legend.position="right") + labs(title= "Tree Distances")
 plot(pb)
-ggsave("AdjVsAnyBlocksDistances.pdf", path="plots/")
+ggsave("AdjVsAnyBlocksDistances.png", path="plots/")
 
 
 

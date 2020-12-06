@@ -14,4 +14,5 @@ The following scripts are contained in this folder:
     of the same chromosome.
 - `pred_runtime.sh` is not part of the pipeline. It is a toy script to assist in calculating an estimate for the total amount of time it would take to run `build_alignments.sh` on all blocks accross all 5 chromosomes.
 
+
 See the main readme or the scripts themselves for more detailed instructions of how each works.

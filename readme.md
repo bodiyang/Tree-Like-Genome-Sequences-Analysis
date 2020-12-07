@@ -23,8 +23,8 @@ All output from the script will be in the `data/` directory. If this directory d
 
 Output includes: 
  - All downloaded files, `filenames.txt` which is a list of all files which were attempted to be downloaded
- - log.txt, the output of the curl commmand used to download the files
- - summary.txt, which contains the number of files downloaded, the minimum file size, and the maximum file size
+ - `log.txt`, the output of the curl commmand used to download the files
+ - `summary.txt`, which contains the number of files downloaded, the minimum file size, and the maximum file size
 
 The script works as follows:
 1. The list of files to be downloaded is obtained by querying http://signal.salk.edu/atg1001/download.php
@@ -35,11 +35,15 @@ The script took about 53 minutes to run, and downloaded 215 SNP files
 
 ## Task 3
 
-The script `build_ind_genome.sh` outputs a file with each strain's DNA sequence at a specified range of the genome. This script is embedded within the script for Task 4 and thus does not need to be run individually. The output file will contain a sequence for each strain with a `quality_variant_<strain_name>.txt` file downloaded in the `data` folder. The chromosome of interest and the starting and ending base positions on that chromosome are given as command line arguments. For example, the call `bash scripts/build_ind_genome.sh 1 997 1006` will generate a file called `chr1_000997_to_001006.phy` in the folder `alignments`. See [report](report.md) for details on what this file looks like.
+The script `build_ind_genome.sh` outputs a file with each strain's DNA sequence at a specified range of the genome. This script is embedded within the script for Task 4 and thus does not need to be run individually. The output file will contain a sequence for each strain with a `quality_variant_<strain_name>.txt` file downloaded in the `data/` directory. The chromosome of interest and the starting and ending base positions on that chromosome are given as command line arguments (in that order). For example,
+ ```
+ bash scripts/build_ind_genome.sh 1 997 1006
+ ```
+will generate a file called `chr1_000997_to_001006.phy` in the folder `alignments/`, which is the 10 base pair sequence from chromosome 1 from starting position 997 to ending position 1006. See [report](report.md) for details on what this file looks like.
 
 ## Task 4
 The script `build_alignments.sh` extracts consecutive and non-overlapping alignments (blocks) of a fixed length from a chosen chromosome. The script takes three arguments: chromosome (i.e., 1-5, C, M); starting position (with a starting index of 1); and number of blocks to produce. There is also a fourth optional argument: block size. For this optional argument, the default is 20,000 base pairs for the C and M chromosomes, and 100,000 base pairs for chromosomes 1-5.
-(The script will run a check of the arguments, to make sure the chromosome's name is in the correct format, starting position does not exceed the length of the chromosome). For Tasks 4-7, we've restricted our analysis to Chromosome 1. 
+(The script will run a check of the arguments, to make sure the chromosome's name is in the correct format, starting position does not exceed the length of the chromosome). **For Tasks 4-7, we've restricted our analysis to Chromosome 1**. 
 
 Sample alignment files produced by the following command are included in the github repository
 ```
@@ -104,7 +108,7 @@ It is important that all test files of the form chrX*.treefile in the iqtree fol
 
 After deleting these test tree files, the script was run from Sam's mac as follows:
 ```
-bash calc_tree_distances.sh 1
+bash scripts/calc_tree_distances.sh 1
 ```
 
 # Task 7

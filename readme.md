@@ -1,5 +1,9 @@
 ## Task 1
-TAIR10 Reference genome file sizes are as follows.
+The reference genome is downloaded from ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/ by executing the `download_ref_genome.sh` script in the `scripts/` directory, run as follows.
+```
+bash scripts/download_ref_genome.sh
+```
+The output from this script are the below TAIR10 reference genomes (with file sizes.
 1. _chr1.fas: 29.4 MB
 2. _chr2.fas: 19.0 MB
 3. _chr3.fas: 22.7 MB
@@ -8,12 +12,15 @@ TAIR10 Reference genome file sizes are as follows.
 6. _chrC.fas: 153 kB
 7. _chrM.fas: 363 kB
 
+These files our output into a created `data/` directory.
+
 ## Task 2
 The script `downloadSNP.sh` downloads all SNP files from the 1001 genomes project. should be run from the fp-group-2 folder. The script works with bash or zsh but zsh is preferred. Note that the script is in the `scripts/` directory, so it should be run as follows:
 ```
 $ ./scripts/downloadSNP.sh
 ```
-All output from the script will be in the `data/` directory. If this directory does not exist, it will be created. If it does exist, its contents will be deleted.
+All output from the script will be in the `data/` directory. If this directory does not exist, it will be created. If it does exist, any contents beginning with   `quality_variant` will be deleted as to remove previously downloaded SNP files but not the reference genome files.
+
 Output includes: 
  - All downloaded files, `filenames.txt` which is a list of all files which were attempted to be downloaded
  - log.txt, the output of the curl commmand used to download the files

@@ -1,5 +1,5 @@
 ## Task 1
-The reference genome is downloaded from [ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/ - URL](ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/) by executing the `download_ref_genome.sh` script in the `scripts/` directory, run as follows.
+The reference genome is downloaded from [ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/](ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/) by executing the `download_ref_genome.sh` script in the `scripts/` directory, run as follows.
 ```
 bash scripts/download_ref_genome.sh
 ```

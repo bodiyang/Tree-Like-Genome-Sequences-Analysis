@@ -13,7 +13,8 @@ The output from this script are the below TAIR10 reference genomes (with file si
 7. _chrM.fas: 363 kB
 
 These files our output into a created `data/` directory.
-(not: data/ was not kept track of in github)
+
+(note: `data/` was not kept track of in github, but would be created after the script was run on local machine)
 
 ## Task 2
 The script `downloadSNP.sh` downloads all SNP files from the 1001 genomes project. should be run from the fp-group-2 folder. The script works with bash or zsh but zsh is preferred. Note that the script is in the `scripts/` directory, so it should be run as follows:

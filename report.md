@@ -68,5 +68,4 @@ First, we compared the distances we calculated between all pairs of trees to the
 
 Next, we compared the distances between all pairs of trees to the distances between trees estimated from adjacent alignments. The distances between trees estimated from adjacent alignments is shifted left from the distances between all pairs of trees. This is reasonable since there is less "recombination" between neighboring blocks than between blocks at opposing ends of the chromosome. 
 
-<img src="plots/SameChromVsRandomDistances.png" alt="drawing" width="400"/>
-<img src="plots/AdjVsAnyBlocksDistances.png" alt="drawing" width="400"/>
+<img src="plots/SameChromVsRandomDistances.png" alt="drawing" width="400"/> <img src="plots/AdjVsAnyBlocksDistances.png" alt="drawing" width="400"/>
